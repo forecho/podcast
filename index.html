@@ -1,0 +1,102 @@
+---
+layout: base
+---
+<div class="post-list">
+  {% assign latest_post = site.posts.first %}
+
+  {% if latest_post %}
+    <div class="featured-ep">
+      <small>ep.{{ latest_post.number }} <span class="grey-color">&#10209;</span> {{ latest_post.date | date: "%m.%-d.%Y" }}</small>
+      <h2><a href="{{ latest_post.url | prepend: site.baseurl }}">{{ latest_post.title }}</a></h2>
+
+      <div class="audio-embed">
+        <div class="play-pause">
+          <i class="icon-play play"></i>
+          <i class="icon-pause pause"></i>
+        </div>
+        <div class="time"><small id="left-time">00:00</small></div>
+        <div class="progress-bar-container">
+          <div class="progress-bar">
+            <div class="progress"></div>
+          </div>
+        </div>
+        <div class="time"><small id="right-time">-00:00</small></div>
+        <div class="volume">
+          <i class="icon-volume-on on"></i>
+          <i class="icon-volume-mute mute"></i>
+        </div>
+        <span class="track-link">{{ latest_post.soundcloud-link }}</span>
+      </div>
+      {{ latest_post.excerpt }}
+      <small><a href="{{ latest_post.url | prepend: site.baseurl }}">view show notes &rarr;</a></small>
+      <ul class="latest_post-tag-list">
+        {% for tag in latest_post.tags %}
+        <li class="inline archive_list"><a class="tag_list_link" href="/tag/{{ tag }}">{{ tag }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
+
+  {% if paginator.total_pages > 1 %}
+  <div class="pagination">
+    {% if paginator.previous_page %}
+      <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&lsaquo;</a>
+    {% else %}
+      <span>&lsaquo;</span>
+    {% endif %}
+
+    {% for page in (1..paginator.total_pages) %}
+      {% if page == paginator.page %}
+        <span class="active-page">{{ page }}</span>
+      {% elsif page == 1 %}
+        <a href="/">{{ page }}</a>
+      {% else %}
+        <a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a>
+      {% endif %}
+    {% endfor %}
+
+    {% if paginator.next_page %}
+      <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">&rsaquo;</a>
+    {% else %}
+      <span>&rsaquo;</span>
+    {% endif %}
+  </div>
+  {% endif %}
+
+  {% for post in paginator.posts %}
+    {% unless post.number == latest_post.number %}
+      <div class="all-eps">
+        <small>ep.{{ post.number }} <span class="grey-color">&#10209;</span> {{ post.date | date: "%m.%-d.%Y" }}</small>
+        <h2><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h2>
+        {{ post.excerpt }}
+        <small><a href="{{ post.url | prepend: site.baseurl }}">view show notes &rarr;</a></small>
+      </div>
+    {% endunless %}
+  {% endfor %}
+
+  {% if paginator.total_pages > 1 %}
+  <div class="pagination">
+    {% if paginator.previous_page %}
+      <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&lsaquo;</a>
+    {% else %}
+      <span>&lsaquo;</span>
+    {% endif %}
+
+    {% for page in (1..paginator.total_pages) %}
+      {% if page == paginator.page %}
+        <span class="active-page">{{ page }}</span>
+      {% elsif page == 1 %}
+        <a href="/">{{ page }}</a>
+      {% else %}
+        <a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a>
+      {% endif %}
+    {% endfor %}
+
+    {% if paginator.next_page %}
+      <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">&rsaquo;</a>
+    {% else %}
+      <span>&rsaquo;</span>
+    {% endif %}
+  </div>
+  {% endif %}
+</div>

@@ -1,0 +1,16 @@
+---
+layout: base
+---
+<article>
+	<p class="date">ep {{ page.number }} &#10209; {{ page.date | date: "%m.%-d.%Y" }}</p>
+  <h2 class="article-title"><a href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a></h2>
+
+  <iframe frameborder='0' height='36px' scrolling='no' seamless src='https://simplecast.com/e/{{ page.simplecast-src }}?style=dark' width='100%'></iframe>
+
+	<article class="post-content">
+	  {{ content }}
+	</article>
+
+	<a href="{{ site.baseurl }}/" class="button">&larr; back to episode list</a>
+
+</article>

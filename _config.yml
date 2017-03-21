@@ -1,0 +1,24 @@
+# Site settings
+title: roboism
+email: your-email@domain.com
+description: > # this means to ignore newlines until "baseurl:"
+  a podcast about robots, technology, and feminism but mostly robots
+
+baseurl: "" # the subpath of your site, e.g. /blog/
+url: "http://roboism.fm" # the base hostname & protocol for your site. comment out for local
+
+# url: "http://localhost:4000/" # comment out for live
+twitter_username: roboismcast
+github_username:  savannahmillion
+
+permalink: title
+
+# Plugins
+gems: [jekyll-paginate]
+
+# Pagination
+paginate: 7
+paginate_path: "/feed/page:num/"
+
+# Build settings
+markdown: kramdown
